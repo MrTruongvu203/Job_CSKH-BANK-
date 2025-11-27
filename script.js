@@ -1,6 +1,11 @@
 // ==============================================================
-// 1. DỮ LIỆU CÔNG VIỆC CHUẨN XÁC [Đã làm sạch text]
+// 1. CẤU HÌNH DỮ LIỆU & LINK GOOGLE SHEET
 // ==============================================================
+
+// 👇 LINK GOOGLE SCRIPT CỦA BẠN (Đã dán sẵn) 👇
+const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwy8a6W-U7e4VB62khY96TDAnlBZ0naAg8Ni74HnYdoaM3qqbt1Sz6oGRC0rE53s_ql/exec';
+
+// DỮ LIỆU VIỆC LÀM (Đã làm sạch text)
 const jobs = [
     {
         id: 1,
@@ -184,17 +189,15 @@ const jobs = [
     }
 ];
 
-// ==========================================
-// 2. LOGIC RENDER JOB (TẠO GIAO DIỆN)
-// ==========================================
+// ==============================================================
+// 2. RENDER GIAO DIỆN (VIEW)
+// ==============================================================
 function renderJobs(data) {
     const container = document.getElementById('jobList');
     const noJob = document.getElementById('noJobFound');
     
-    // Xóa nội dung cũ
     container.innerHTML = '';
     
-    // Kiểm tra dữ liệu
     if(data.length === 0) {
         noJob.classList.remove('hidden');
         return;
@@ -202,7 +205,6 @@ function renderJobs(data) {
         noJob.classList.add('hidden');
     }
 
-    // Loop tạo từng card
     data.forEach((job, index) => {
         const cardHTML = `
             <div class="bg-white rounded-2xl shadow-lg shadow-slate-200/50 hover:shadow-2xl hover:shadow-blue-500/10 transition-all duration-300 overflow-hidden group border border-slate-100 flex flex-col h-full transform hover:-translate-y-2"
@@ -210,9 +212,7 @@ function renderJobs(data) {
                 
                 <div class="h-48 overflow-hidden relative cursor-pointer" onclick="openModal(${job.id})">
                     <img src="${job.image}" alt="${job.title}" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700 ease-out">
-                    
                     <div class="absolute inset-0 bg-gradient-to-t from-slate-900/90 via-slate-900/30 to-transparent"></div>
-
                     <div class="absolute bottom-4 left-4 z-10">
                         <span class="bg-white/95 backdrop-blur-md ${job.themeText} px-3 py-1.5 rounded-lg text-[10px] font-extrabold uppercase tracking-widest shadow-lg">
                             ${job.bank}
@@ -254,15 +254,15 @@ function renderJobs(data) {
     });
 }
 
-// ==========================================
-// 3. LOGIC LỌC (FILTER)
-// ==========================================
+// ==============================================================
+// 3. LOGIC XỬ LÝ SỰ KIỆN (CONTROLLER)
+// ==============================================================
+
 function filterJobs() {
     const bankVal = document.getElementById('filterBank').value;
     const typeVal = document.getElementById('filterType').value;
 
     const filtered = jobs.filter(job => {
-        // Kiểm tra ngân hàng (dùng includes vì "UOB" khớp với "UOB TTS")
         const matchBank = bankVal === 'all' || job.bank.includes(bankVal);
         const matchType = typeVal === 'all' || job.type === typeVal;
         return matchBank && matchType;
@@ -271,9 +271,7 @@ function filterJobs() {
     renderJobs(filtered);
 }
 
-// ==========================================
-// 4. LOGIC MODAL (POPUP CHI TIẾT)
-// ==========================================
+// Modal Variables
 const modal = document.getElementById('jobModal');
 const modalOverlay = document.getElementById('modalOverlay');
 const modalContent = document.getElementById('modalContent');
@@ -282,23 +280,18 @@ function openModal(id) {
     const job = jobs.find(j => j.id === id);
     if (!job) return;
 
-    // A. Fill dữ liệu Text cơ bản
+    // A. Điền thông tin
     document.getElementById('modalTitle').innerText = job.title;
     document.getElementById('modalLoc').innerText = job.location;
     
-    // B. Xử lý Style động (Màu sắc theo Job)
-    
-    // 1. Badge Ngân hàng
     const bankLabel = document.getElementById('modalBank');
     bankLabel.innerText = job.bank;
     bankLabel.className = `inline-block px-3 py-1.5 rounded-lg text-xs font-black uppercase tracking-widest mb-4 shadow-sm ${job.themeBg} ${job.themeText}`;
 
-    // 2. Mức lương (Tô màu)
     const salaryText = document.getElementById('modalSalary');
     salaryText.innerText = job.salary;
     salaryText.className = `font-bold text-lg ${job.themeText}`;
 
-    // C. Render các danh sách (Desc, Req, Ben)
     const renderList = (arr, elementId) => {
         const el = document.getElementById(elementId);
         if(el) {
@@ -310,83 +303,77 @@ function openModal(id) {
     renderList(job.req, 'modalReq');
     renderList(job.ben, 'modalBen');
 
-    // D. Hiển thị Modal
+    // B. Hiển thị Modal
     modal.classList.remove('hidden');
-    
-    // Animation Fade-in
     setTimeout(() => {
         modalOverlay.classList.remove('opacity-0');
         modalContent.classList.remove('opacity-0', 'scale-95');
         modalContent.classList.add('scale-100');
     }, 10);
-    
-    // Khóa cuộn background
     document.body.style.overflow = 'hidden';
 }
 
 function closeModal() {
-    // Animation Fade-out
     modalOverlay.classList.add('opacity-0');
     modalContent.classList.remove('scale-100');
     modalContent.classList.add('opacity-0', 'scale-95');
 
-    // Đợi hiệu ứng xong mới ẩn
     setTimeout(() => {
         modal.classList.add('hidden');
         document.body.style.overflow = 'auto'; 
     }, 300);
 }
 
-// Đóng khi click ra ngoài
 modalOverlay.addEventListener('click', closeModal);
 
-// ==========================================
-// 5. SUBMIT FORM (GỬI VỀ GOOGLE SHEETS)
-// ==========================================
+// ==============================================================
+// 4. SUBMIT FORM - GỬI VỀ GOOGLE SHEETS (MODE: NO-CORS)
+// ==============================================================
 function submitForm(e) {
     e.preventDefault();
+    
     const btn = e.target.querySelector('button');
     const originalContent = btn.innerHTML;
-    
-    // 1. Lấy dữ liệu từ form
     const form = e.target;
-    const data = new FormData(form);
     
-    // 🟢 ĐÂY LÀ LINK GOOGLE SHEET CỦA BẠN 🟢
-    const scriptURL = 'https://script.google.com/macros/s/AKfycbwy8a6W-U7e4VB62khY96TDAnlBZ0naAg8Ni74HnYdoaM3qqbt1Sz6oGRC0rE53s_ql/exec';
+    // 1. CHUẨN BỊ DỮ LIỆU
+    // Sử dụng FormData để tự động lấy các trường có name="hoten", name="sdt",...
+    const formData = new FormData(form);
 
-    // 2. Hiệu ứng Loading
+    // 2. HIỆU ỨNG LOADING
     btn.innerHTML = '<i class="fas fa-circle-notch fa-spin"></i> Đang gửi...';
     btn.disabled = true;
     btn.classList.add('opacity-80', 'cursor-not-allowed');
 
-    // 3. Gửi dữ liệu
-    fetch(scriptURL, { method: 'POST', body: data })
-        .then(response => {
-            // Thông báo thành công
-            alert('🎉 CHÚC MỪNG!\nHồ sơ của bạn đã được lưu thành công vào hệ thống.\nBộ phận Tuyển dụng Bellsystem24 sẽ liên hệ bạn sớm.');
-            
-            // Reset form
-            btn.innerHTML = originalContent;
-            btn.disabled = false;
-            btn.classList.remove('opacity-80', 'cursor-not-allowed');
-            form.reset();
-            closeModal();
-        })
-        .catch(error => {
-            // Thông báo lỗi
-            console.error('Error!', error.message);
-            alert('❌ Có lỗi xảy ra khi gửi đơn! Vui lòng kiểm tra kết nối mạng và thử lại.');
-            
-            btn.innerHTML = originalContent;
-            btn.disabled = false;
-            btn.classList.remove('opacity-80', 'cursor-not-allowed');
-        });
+    // 3. GỬI DỮ LIỆU BẰNG FETCH (QUAN TRỌNG: mode: 'no-cors')
+    // 'no-cors' giúp vượt qua lỗi chặn của trình duyệt khi gửi tới Google Script
+    fetch(GOOGLE_SCRIPT_URL, { 
+        method: 'POST', 
+        body: formData,
+        mode: 'no-cors' 
+    })
+    .then(() => {
+        // Vì no-cors trả về phản hồi "đen" (opaque), ta mặc định là thành công nếu không có lỗi mạng
+        alert('🎉 CHÚC MỪNG!\nHồ sơ của bạn đã được gửi thành công đến hệ thống BELLSYSTEM24.');
+        
+        // Reset form và đóng modal
+        btn.innerHTML = originalContent;
+        btn.disabled = false;
+        btn.classList.remove('opacity-80', 'cursor-not-allowed');
+        form.reset();
+        closeModal();
+    })
+    .catch(error => {
+        console.error('Lỗi:', error);
+        alert('⚠️ Có lỗi kết nối. Vui lòng kiểm tra mạng và thử lại.');
+        
+        btn.innerHTML = originalContent;
+        btn.disabled = false;
+        btn.classList.remove('opacity-80', 'cursor-not-allowed');
+    });
 }
 
-// ==========================================
-// 6. KHỞI CHẠY LẦN ĐẦU
-// ==========================================
+// KHỞI CHẠY
 document.addEventListener('DOMContentLoaded', () => {
     renderJobs(jobs);
 });
