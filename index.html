@@ -5,10 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tuyển dụng BELLSYSTEM24 Vietnam</title>
     
-    <!-- FONTS & ICONS -->
+    <!-- FONTS -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@500;600;700;800;900&display=swap" rel="stylesheet">
+    <!-- Thêm font Roboto như yêu cầu -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@500;600;700;800;900&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <!-- TAILWIND CSS -->
@@ -26,11 +27,14 @@
                     fontFamily: {
                         sans: ['Inter', 'sans-serif'],
                         display: ['Poppins', 'sans-serif'],
+                        roboto: ['Roboto', 'sans-serif'], // Khai báo font Roboto
                     },
                     animation: {
                         'float': 'float 6s ease-in-out infinite',
                         'float-delayed': 'float 6s ease-in-out 3s infinite',
                         'pulse-glow': 'pulse-glow 2s infinite',
+                        'fade-up': 'fadeUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards',
+                        'scroll': 'scroll 40s linear infinite',
                     }
                 }
             }
@@ -40,30 +44,30 @@
     <!-- LIÊN KẾT ĐẾN FILE CSS RIÊNG -->
     <link rel="stylesheet" href="style.css">
 </head>
-<body class="flex flex-col min-h-screen relative">
+<body class="flex flex-col min-h-screen relative bg-[#f0f9ff] text-slate-800">
 
     <!-- Background Elements -->
     <div class="fixed inset-0 overflow-hidden pointer-events-none z-0">
-        <div class="blob w-[500px] h-[500px] bg-purple-200 top-[-100px] left-[-100px] animate-float"></div>
-        <div class="blob w-[400px] h-[400px] bg-cyan-200 bottom-[-50px] right-[-50px] animate-float-delayed"></div>
+        <div class="blob w-[500px] h-[500px] bg-purple-200 top-[-100px] left-[-100px] animate-float opacity-60 blur-[80px] absolute rounded-full"></div>
+        <div class="blob w-[400px] h-[400px] bg-cyan-200 bottom-[-50px] right-[-50px] animate-float-delayed opacity-60 blur-[80px] absolute rounded-full"></div>
     </div>
 
     <!-- NAVIGATION -->
     <nav class="glass-nav fixed w-full z-50 top-0 left-0 transition-all duration-300">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-20">
-                <!-- LOGO MỚI (Sử dụng ảnh image_64f3b6.png) -->
-                <div class="flex items-center gap-3 cursor-pointer group" onclick="router.navigate('home')">
+                <!-- LOGO -->
+                <div class="flex items-center gap-3 cursor-pointer group" onclick="window.router.navigate('home')">
                     <img src="logo.png" alt="BellSystem24 Logo" class="w-12 h-12 object-contain group-hover:scale-105 transition duration-300 drop-shadow-md">
-                    <span class="text-2xl font-display font-black tracking-tighter text-slate-800">
+                    <span class="text-2xl font-display font-black tracking-tighter text-slate-900">
                         BELL<span class="text-gradient">SYSTEM24</span>
                     </span>
                 </div>
 
                 <div class="hidden md:flex space-x-8 items-center">
-                    <a href="#" onclick="router.navigate('home'); return false;" class="text-slate-600 hover:text-purple-600 font-semibold transition py-2">Trang chủ</a>
-                    <a href="#" onclick="router.navigate('home', 'about'); return false;" class="text-slate-600 hover:text-purple-600 font-semibold transition py-2">Về chúng tôi</a>
-                    <button onclick="router.navigate('jobs')" class="px-6 py-2.5 rounded-full bg-slate-100 text-purple-700 font-bold hover:bg-purple-100 transition border border-transparent hover:border-purple-200 flex items-center gap-2">
+                    <a href="#" onclick="window.router.navigate('home'); return false;" class="text-slate-600 hover:text-purple-600 font-semibold transition py-2">Trang chủ</a>
+                    <a href="#" onclick="window.router.navigate('home', 'about'); return false;" class="text-slate-600 hover:text-purple-600 font-semibold transition py-2">Về chúng tôi</a>
+                    <button onclick="window.router.navigate('jobs')" class="px-6 py-2.5 rounded-full bg-slate-100 text-purple-700 font-bold hover:bg-purple-100 transition border border-transparent hover:border-purple-200 flex items-center gap-2">
                         <i class="fa-solid fa-briefcase"></i> Việc làm HOT
                     </button>
                 </div>
@@ -76,40 +80,33 @@
 
     <!-- MAIN CONTAINER -->
     <main id="app" class="flex-grow pt-20 z-10 relative">
-        <!-- JS sẽ tự động điền nội dung vào đây -->
+        <!-- Nội dung sẽ được app.js render vào đây -->
     </main>
 
     <!-- FOOTER -->
-    <footer class="bg-white/80 backdrop-blur border-t border-slate-200 pt-16 pb-8 mt-20 z-10 relative">
+    <footer class="bg-white/80 backdrop-blur border-t border-slate-200 pt-16 pb-8 mt-auto z-10 relative">
         <div class="max-w-7xl mx-auto px-4 text-center">
-            <h2 class="text-2xl font-display font-bold text-slate-800 mb-4">BELLSYSTEM24 VIETNAM</h2>
-            <p class="text-slate-500 mb-8 max-w-lg mx-auto">Kết nối tài năng trẻ với các định chế tài chính hàng đầu.</p>
+            <h2 class="text-2xl font-display font-bold text-slate-900 mb-4">BELLSYSTEM24 VIETNAM</h2>
+            <p class="text-slate-500 mb-8 max-w-lg mx-auto">Kết nối tài năng trẻ với các định chế tài chính hàng đầu Việt Nam.</p>
             
-            <!-- SOCIAL ICONS -->
             <div class="flex justify-center gap-6 mb-8">
-                <!-- Facebook -->
                 <a href="https://www.facebook.com/profile.php?id=61584435535860" target="_blank" class="w-12 h-12 rounded-full bg-white border border-slate-200 flex items-center justify-center text-slate-600 hover:bg-[#1877F2] hover:text-white hover:border-[#1877F2] transition-all shadow-sm hover:shadow-lg transform hover:-translate-y-1 group">
                     <i class="fa-brands fa-facebook-f text-xl"></i>
                 </a>
-                
-                <!-- TikTok -->
                 <a href="#" target="_blank" class="w-12 h-12 rounded-full bg-white border border-slate-200 flex items-center justify-center text-slate-600 hover:bg-black hover:text-white hover:border-black transition-all shadow-sm hover:shadow-lg transform hover:-translate-y-1 group">
                     <i class="fa-brands fa-tiktok text-xl"></i>
                 </a>
-
-                <!-- LinkedIn -->
                 <a href="#" target="_blank" class="w-12 h-12 rounded-full bg-white border border-slate-200 flex items-center justify-center text-slate-600 hover:bg-[#0077b5] hover:text-white hover:border-[#0077b5] transition-all shadow-sm hover:shadow-lg transform hover:-translate-y-1 group">
                     <i class="fa-brands fa-linkedin-in text-xl"></i>
                 </a>
             </div>
             
             <div class="border-t border-slate-200 pt-8 text-sm text-slate-400 font-medium">
-                &copy; 2025 Bellsystem24 Vietnam.
+                &copy; 2025 Bellsystem24 Vietnam. All rights reserved.
             </div>
         </div>
     </footer>
 
-    <!-- LIÊN KẾT ĐẾN FILE JS RIÊNG -->
     <script src="app.js"></script>
 </body>
 </html>

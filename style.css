@@ -11,7 +11,7 @@ body {
     -webkit-tap-highlight-color: transparent;
 }
 
-/* Scrollbar */
+/* Scrollbar Customization */
 ::-webkit-scrollbar { width: 8px; }
 ::-webkit-scrollbar-track { background: #f1f5f9; }
 ::-webkit-scrollbar-thumb { background: linear-gradient(#06b6d4, #8b5cf6); border-radius: 4px; }
@@ -38,7 +38,7 @@ body {
     animation: fadeUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
-/* --- HIỆU ỨNG CHỮ TITLE --- */
+/* --- HIỆU ỨNG CHỮ TITLE (Gradient Blur Reveal) --- */
 .animate-title-reveal {
     background: linear-gradient(to right, #06b6d4 0%, #8b5cf6 50%, #06b6d4 100%);
     background-size: 200% auto;
@@ -72,7 +72,7 @@ body {
     100% { background-position: 200% 50%; }
 }
 
-/* --- INFINITE SCROLL (LOGO MARQUEE) - MỚI --- */
+/* --- INFINITE SCROLL (LOGO MARQUEE) --- */
 @keyframes scroll {
     0% { transform: translateX(0); }
     100% { transform: translateX(-50%); }
@@ -81,14 +81,14 @@ body {
 .animate-scroll {
     display: flex;
     width: max-content; /* Bắt buộc để nội dung dài ra */
-    animation: scroll 40s linear infinite; /* 40s để chạy chậm mượt */
+    animation: scroll 10s linear infinite; /* 40s để chạy chậm mượt */
 }
 
 .animate-scroll:hover {
     animation-play-state: paused; /* Dừng khi di chuột vào */
 }
 
-/* Glassmorphism Classes */
+/* --- GLASSMORPHISM --- */
 .glass-nav {
     background: rgba(255, 255, 255, 0.85);
     backdrop-filter: blur(16px);
@@ -103,7 +103,7 @@ body {
     box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.07);
 }
 
-/* Text & Buttons */
+/* --- UTILITIES --- */
 .text-gradient {
     background: var(--gradient-primary);
     -webkit-background-clip: text;
@@ -119,9 +119,12 @@ body {
     overflow: hidden;
     z-index: 1;
 }
-.btn-primary:hover { transform: translateY(-3px); box-shadow: 0 10px 20px -5px rgba(139, 92, 246, 0.4); }
+.btn-primary:hover { 
+    transform: translateY(-3px); 
+    box-shadow: 0 10px 20px -5px rgba(139, 92, 246, 0.4); 
+}
 
-/* Job Card */
+/* Job Card Hover Effect */
 .job-card {
     transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
@@ -131,10 +134,10 @@ body {
     border-color: #d8b4fe;
 }
 
-/* Video Wrapper */
+/* Video Wrapper (Responsive 16:9) */
 .video-wrapper {
     position: relative;
-    padding-bottom: 56.25%;
+    padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
     height: 0;
     overflow: hidden;
     border-radius: 1rem;
@@ -147,11 +150,16 @@ body {
     height: 100%;
 }
 
-/* Blob Background */
+/* Background Blobs */
 .blob {
     position: absolute;
     border-radius: 50%;
     filter: blur(80px);
     z-index: -1;
     opacity: 0.6;
+}
+
+/* CV Print/Preview Font Fix */
+#cv-preview-container {
+    font-family: 'Roboto', 'Segoe UI', Arial, sans-serif !important;
 }
