@@ -124,18 +124,21 @@ const jobsData = [
 
 // --- VIEWS: GIAO DIỆN (TEMPLATES) ---
 
-// 1. HOME VIEW
+// 1. HOME VIEW (ĐÃ CẬP NHẬT: HIỆU ỨNG TIÊU ĐỀ & VIDEO)
 const HomeView = () => `
     <!-- Hero Section -->
-    <section class="relative pt-12 pb-24 px-4 text-center">
+    <section class="relative pt-12 pb-16 px-4 text-center">
         <div class="max-w-5xl mx-auto z-10 animate-fade-up">
             <span class="inline-flex items-center gap-2 py-1.5 px-4 rounded-full bg-white border border-purple-200 text-purple-600 text-xs font-bold uppercase tracking-wider mb-6 shadow-sm">
                 <span class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span> Đang tuyển dụng 2025
             </span>
+            
             <h1 class="text-5xl md:text-7xl font-display font-black mb-6 leading-tight text-slate-900 tracking-tight">
                 Khởi Đầu Sự Nghiệp <br>
-                <span class="text-gradient">Tài Chính Ngân Hàng</span>
+                <!-- Áp dụng hiệu ứng animate-title-reveal -->
+                <span class="animate-title-reveal py-1">Tài Chính Ngân Hàng</span>
             </h1>
+            
             <p class="text-lg md:text-xl text-slate-500 mb-10 max-w-2xl mx-auto font-medium leading-relaxed">
                 Gia nhập BELLSYSTEM24 - Đối tác chiến lược của MB, UOB, TPBank, BIDV. Môi trường làm việc chuẩn Gen Z, thu nhập hấp dẫn và lộ trình thăng tiến rõ ràng.
             </p>
@@ -146,6 +149,51 @@ const HomeView = () => `
                 <a href="https://www.facebook.com/profile.php?id=61584435535860" target="_blank" class="py-4 px-10 rounded-full bg-white text-slate-700 font-bold border border-slate-200 hover:border-blue-400 hover:text-blue-600 transition shadow-sm flex items-center justify-center gap-2">
                     <i class="fa-brands fa-facebook"></i> Chat với HR
                 </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- NEW: Video Section (TPBank & BIDV) -->
+    <section class="max-w-6xl mx-auto px-4 py-8 mb-12 animate-fade-up" style="animation-delay: 0.2s;">
+        <div class="text-center mb-8">
+            <h2 class="text-2xl font-display font-bold text-slate-800 flex items-center justify-center gap-2">
+                <i class="fa-solid fa-play-circle text-purple-600"></i>
+                Góc Nhìn <span class="text-gradient">Thực Tế</span>
+            </h2>
+            <p class="text-slate-500 text-sm mt-2">Khám phá môi trường làm việc chuyên nghiệp tại các dự án.</p>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-8">
+            <!-- Video TPBank -->
+            <div class="glass-card p-4 rounded-3xl hover:shadow-xl transition duration-300 transform hover:-translate-y-1">
+                <div class="flex items-center gap-3 mb-4 px-2">
+                    <div class="w-10 h-10 rounded-lg bg-purple-100 text-purple-600 flex items-center justify-center text-xl shadow-inner">
+                        <i class="fa-solid fa-money-bill-transfer"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-slate-800 text-lg">Dự án TPBank</h3>
+                        <p class="text-xs text-slate-500 font-medium">Môi trường trẻ trung, năng động, Gen Z</p>
+                    </div>
+                </div>
+                <div class="video-wrapper bg-slate-100 rounded-xl overflow-hidden shadow-inner border border-slate-100 relative" style="padding-bottom: 56.25%; height: 0;">
+                     <iframe class="absolute top-0 left-0 w-full h-full" src="video_tpbank.mp4" title="TPBank Office" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+            </div>
+
+            <!-- Video BIDV -->
+            <div class="glass-card p-4 rounded-3xl hover:shadow-xl transition duration-300 transform hover:-translate-y-1">
+                 <div class="flex items-center gap-3 mb-4 px-2">
+                    <div class="w-10 h-10 rounded-lg bg-green-100 text-green-600 flex items-center justify-center text-xl shadow-inner">
+                        <i class="fa-solid fa-leaf"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-slate-800 text-lg">Dự án BIDV</h3>
+                        <p class="text-xs text-slate-500 font-medium">Chuyên nghiệp, ổn định, phúc lợi tốt</p>
+                    </div>
+                </div>
+                <div class="video-wrapper bg-slate-100 rounded-xl overflow-hidden shadow-inner border border-slate-100 relative" style="padding-bottom: 56.25%; height: 0;">
+                    <iframe class="absolute top-0 left-0 w-full h-full" src="video_bidv.mp4" title="BIDV Environment" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
             </div>
         </div>
     </section>
@@ -423,8 +471,8 @@ const handleSearch = () => {
     
     const filtered = jobsData.filter(job => {
         const matchKeyword = job.title.toLowerCase().includes(keyword) || 
-                           job.bank.toLowerCase().includes(keyword) ||
-                           job.type.toLowerCase().includes(keyword);
+                             job.bank.toLowerCase().includes(keyword) ||
+                             job.type.toLowerCase().includes(keyword);
         const matchBank = bank === 'all' || job.bank === bank;
         return matchKeyword && matchBank;
     });

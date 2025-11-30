@@ -16,7 +16,7 @@ body {
 ::-webkit-scrollbar-track { background: #f1f5f9; }
 ::-webkit-scrollbar-thumb { background: linear-gradient(#06b6d4, #8b5cf6); border-radius: 4px; }
 
-/* Animations */
+/* --- ANIMATIONS CƠ BẢN --- */
 @keyframes float {
     0%, 100% { transform: translateY(0); }
     50% { transform: translateY(-20px); }
@@ -38,7 +38,41 @@ body {
     animation: fadeUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
-/* Glassmorphism */
+/* --- HIỆU ỨNG CHỮ TITLE (MỚI) --- */
+.animate-title-reveal {
+    background: linear-gradient(to right, #06b6d4 0%, #8b5cf6 50%, #06b6d4 100%);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: 
+        textReveal 1.2s cubic-bezier(0.2, 0, 0.2, 1) forwards,
+        gradientFlow 3s linear infinite;
+    opacity: 0;
+    display: inline-block;
+}
+
+@keyframes textReveal {
+    0% {
+        opacity: 0;
+        transform: translateY(20px) scale(0.95);
+        filter: blur(10px);
+        letter-spacing: -2px;
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+        filter: blur(0);
+        letter-spacing: normal;
+    }
+}
+
+@keyframes gradientFlow {
+    0% { background-position: 0% 50%; }
+    100% { background-position: 200% 50%; }
+}
+
+/* Glassmorphism Classes */
 .glass-nav {
     background: rgba(255, 255, 255, 0.85);
     backdrop-filter: blur(16px);
@@ -79,6 +113,22 @@ body {
     transform: translateY(-10px) scale(1.02);
     box-shadow: 0 20px 40px -5px rgba(139, 92, 246, 0.15);
     border-color: #d8b4fe;
+}
+
+/* Video Card Styles */
+.video-wrapper {
+    position: relative;
+    padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+    height: 0;
+    overflow: hidden;
+    border-radius: 1rem;
+}
+.video-wrapper iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
 }
 
 /* Blob Background */
