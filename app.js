@@ -158,13 +158,13 @@ const HomeView = () => `
                 <span class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span> Đang tuyển dụng 2025
             </span>
             
-            <h1 class="text-5xl md:text-7xl font-display font-black mb-6 leading-tight text-slate-900 tracking-tight">
+            <h1 class="text-5xl md:text-7xl font-montserrat font-black mb-6 leading-tight text-slate-900 tracking-tight">
                 Khởi Đầu Sự Nghiệp <br>
                 <span class="animate-title-reveal py-1">Tài Chính Ngân Hàng</span>
             </h1>
             
             <p class="text-lg md:text-xl text-slate-500 mb-10 max-w-2xl mx-auto font-medium leading-relaxed">
-                Gia nhập BELLSYSTEM24 - Đối tác chiến lược của MB, UOB, TPBank, BIDV. Môi trường làm việc chuẩn Gen Z, thu nhập hấp dẫn và lộ trình thăng tiến rõ ràng.
+                Gia nhập BELLSYSTEM24 - Đối tác chiến lược của MB, TPBank, BIDV. Môi trường làm việc chuẩn Gen Z, thu nhập hấp dẫn và lộ trình thăng tiến rõ ràng.
             </p>
             <div class="flex flex-col sm:flex-row gap-4 justify-center flex-wrap">
                 <button onclick="window.router.navigate('jobs')" class="btn-primary py-4 px-8 rounded-full text-lg font-bold shadow-lg shadow-purple-200 flex items-center justify-center gap-2 min-w-[200px]">
@@ -197,12 +197,6 @@ const HomeView = () => `
                 <div class="flex gap-16 mx-10 items-center">
                     <div class="flex items-center gap-3 transition duration-300 hover:scale-110 cursor-pointer">
                         <div class="w-20 h-20 rounded-2xl bg-white p-3 flex items-center justify-center shadow-lg shadow-blue-100 border border-slate-100">
-                            <img src="logo_uob.jpg" class="w-full h-full object-contain" alt="UOB">
-                        </div>
-                        <span class="text-xl font-display font-bold text-slate-800">UOB Bank</span>
-                    </div>
-                    <div class="flex items-center gap-3 transition duration-300 hover:scale-110 cursor-pointer">
-                        <div class="w-20 h-20 rounded-2xl bg-white p-3 flex items-center justify-center shadow-lg shadow-blue-100 border border-slate-100">
                             <img src="https://upload.wikimedia.org/wikipedia/commons/2/25/Logo_MB_new.png" class="w-full h-full object-contain" alt="MB">
                         </div>
                         <span class="text-xl font-display font-bold text-slate-800">MB Bank</span>
@@ -226,14 +220,9 @@ const HomeView = () => `
                         <span class="text-xl font-display font-bold text-slate-800">VETC</span>
                     </div>
                 </div>
-                <!-- Group 2 -->
+                
+                <!-- Group 2 (Duplicate for Infinite Loop) -->
                 <div class="flex gap-16 mx-10 items-center">
-                    <div class="flex items-center gap-3 transition duration-300 hover:scale-110 cursor-pointer">
-                        <div class="w-20 h-20 rounded-2xl bg-white p-3 flex items-center justify-center shadow-lg shadow-blue-100 border border-slate-100">
-                            <img src="logo_uob.jpg" class="w-full h-full object-contain" alt="UOB">
-                        </div>
-                        <span class="text-xl font-display font-bold text-slate-800">UOB Bank</span>
-                    </div>
                     <div class="flex items-center gap-3 transition duration-300 hover:scale-110 cursor-pointer">
                         <div class="w-20 h-20 rounded-2xl bg-white p-3 flex items-center justify-center shadow-lg shadow-blue-100 border border-slate-100">
                             <img src="https://upload.wikimedia.org/wikipedia/commons/2/25/Logo_MB_new.png" class="w-full h-full object-contain" alt="MB">
@@ -307,7 +296,7 @@ const HomeView = () => `
             <!-- Right Column -->
             <div class="order-1 lg:order-2 pl-0 lg:pl-10">
                 <span class="inline-block py-1 px-3 rounded-lg bg-purple-100 text-purple-700 text-xs font-bold uppercase tracking-widest mb-4 animate-fade-up">Về chúng tôi</span>
-                <h2 class="text-4xl md:text-5xl font-display font-black text-slate-900 mb-6 leading-[1.2] animate-fade-up" style="animation-delay: 0.1s;">
+                <h2 class="text-4xl md:text-5xl font-montserrat font-black text-slate-900 mb-6 leading-[1.2] animate-fade-up" style="animation-delay: 0.1s;">
                     Nơi Bạn Được <br>
                     <span class="text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-cyan-500">Là Chính Mình</span>
                 </h2>
@@ -505,7 +494,7 @@ const JobDetailView = (job) => `
 `;
 
 // --- HELPER: Render CV Template 1 (Classic Blue) ---
-// UPDATE: Added break-words to prevent overflow
+// UPDATE: Centered Headers & Increase Font Size
 const renderTemplate1 = () => `
     <div id="cv-preview-container" class="bg-white w-[210mm] min-h-[297mm] shadow-2xl flex relative text-slate-800 overflow-hidden">
         <!-- LEFT COLUMN (BLUE) -->
@@ -518,7 +507,7 @@ const renderTemplate1 = () => `
             <h1 id="cv-name" class="text-3xl font-black text-[#0f766e] uppercase mb-3 leading-tight break-words w-full">NGUYỄN VĂN A</h1>
             <p id="cv-title" class="text-lg font-bold text-[#14b8a6] mb-10 uppercase tracking-wider">NHÂN VIÊN CSKH</p>
 
-            <!-- Contact Info -->
+            <!-- Contact Info (CENTERED HEADER) -->
             <div class="w-full text-left space-y-4 mb-10">
                 <div class="flex justify-center items-center bg-[#14b8a6] text-white font-bold py-2 px-4 uppercase text-base mb-6 rounded-full border border-[#0f766e] shadow-sm">THÔNG TIN LIÊN HỆ</div>
                 <div id="sec-dob" class="flex items-center gap-3 text-base text-slate-700 break-words"><i class="fa-solid fa-cake-candles w-6 text-[#14b8a6] text-lg flex-shrink-0"></i> <span id="cv-dob">xx/xx/xxxx</span></div>
@@ -528,13 +517,13 @@ const renderTemplate1 = () => `
                 <div id="sec-addr" class="flex items-center gap-3 text-base text-slate-700 break-words"><i class="fa-solid fa-location-dot w-6 text-[#14b8a6] text-lg flex-shrink-0"></i> <span id="cv-addr">Hà Nội</span></div>
             </div>
 
-            <!-- Objective -->
+            <!-- Objective (CENTERED HEADER) -->
             <div id="container-objective" class="w-full text-left mb-10" style="display:none;">
                 <div class="flex justify-center items-center bg-transparent border-2 border-[#14b8a6] text-[#0f766e] font-bold py-2 px-4 uppercase text-base mb-4 shadow-sm">MỤC TIÊU NGHỀ NGHIỆP</div>
                 <p id="cv-objective" class="text-base text-slate-700 leading-relaxed text-justify break-words"></p>
             </div>
 
-            <!-- Skills -->
+            <!-- Skills (CENTERED HEADER) -->
             <div id="container-skills" class="w-full text-left" style="display:none;">
                 <div class="flex justify-center items-center bg-transparent border-2 border-[#14b8a6] text-[#0f766e] font-bold py-2 px-4 uppercase text-base mb-4 shadow-sm">KỸ NĂNG</div>
                 <p id="cv-skills" class="text-base text-slate-700 leading-relaxed whitespace-pre-line break-words"></p>
@@ -543,12 +532,12 @@ const renderTemplate1 = () => `
 
         <!-- RIGHT COLUMN (WHITE) -->
         <div class="w-[65%] p-10 pt-12 flex flex-col">
-            <!-- Education -->
+            <!-- Education (CENTERED HEADER) -->
             <div id="container-education" class="mb-10" style="display:none;">
                 <div class="flex justify-center items-center bg-[#0ea5e9] text-white font-bold py-3 px-6 rounded-full uppercase mb-6 w-full tracking-wide text-lg shadow-md">HỌC VẤN</div>
                 <div id="cv-education" class="text-base text-slate-800 leading-relaxed whitespace-pre-line pl-4 border-l-4 border-[#0ea5e9]/30 break-words"></div>
             </div>
-            <!-- Experience -->
+            <!-- Experience (CENTERED HEADER) -->
             <div id="container-experience" class="mb-10">
                 <div class="flex justify-center items-center bg-[#0ea5e9] text-white font-bold py-3 px-6 rounded-full uppercase mb-6 w-full tracking-wide text-lg shadow-md">KINH NGHIỆM LÀM VIỆC</div>
                 <div id="cv-exp-list" class="space-y-8">
@@ -563,7 +552,7 @@ const renderTemplate1 = () => `
                 </div>
                 <p id="exp-placeholder" class="text-base text-slate-400 italic text-center py-8">(Chưa nhập kinh nghiệm)</p>
             </div>
-            <!-- Activities -->
+            <!-- Activities (CENTERED HEADER) -->
             <div id="container-activities" class="mb-10" style="display:none;">
                 <div class="flex justify-center items-center bg-[#0ea5e9] text-white font-bold py-3 px-6 rounded-full uppercase mb-6 w-full tracking-wide text-lg shadow-md">HOẠT ĐỘNG</div>
                 <div id="cv-activities" class="text-base text-slate-800 leading-relaxed whitespace-pre-line pl-4 border-l-4 border-[#0ea5e9]/30 break-words"></div>
@@ -577,7 +566,7 @@ const renderTemplate1 = () => `
 `;
 
 // --- HELPER: Render CV Template 2 (Modern Teal) ---
-// UPDATE: Added break-words to prevent overflow
+// UPDATE: Centered Headers & Increase Font Size
 const renderTemplate2 = () => `
     <div id="cv-preview-container" class="bg-white w-[210mm] min-h-[297mm] shadow-2xl flex flex-col relative text-slate-800 overflow-hidden">
         <!-- Header Section -->
@@ -602,16 +591,16 @@ const renderTemplate2 = () => `
             <!-- Left Column (Main Content) -->
             <div class="col-span-5 flex flex-col gap-8 border-r border-gray-200 pr-6">
                 
-                <!-- Objective -->
+                <!-- Objective (CENTERED HEADER) -->
                 <div id="container-objective" style="display:none;">
                     <div class="flex items-center mb-3 justify-center w-full relative">
                          <div class="bg-teal-500 text-white p-2 rounded-full absolute left-0"><i class="fa-solid fa-user"></i></div>
                          <h3 class="font-bold text-gray-700 uppercase text-lg bg-gray-200 py-1 px-4 rounded-r-full w-full flex justify-center items-center pl-10">MỤC TIÊU NGHỀ NGHIỆP</h3>
                     </div>
-                    <p id="cv-objective" class="text-sm text-gray-600 leading-relaxed text-justify pl-2 break-words"></p>
+                    <p id="cv-objective" class="text-base text-gray-600 leading-relaxed text-justify pl-2 break-words"></p>
                 </div>
 
-                 <!-- Experience (Timeline Style) -->
+                 <!-- Experience (Timeline Style) - CENTERED HEADER -->
                 <div id="container-experience">
                      <div class="flex items-center mb-4 justify-center w-full relative">
                          <div class="bg-teal-500 text-white p-2 rounded-full absolute left-0"><i class="fa-solid fa-briefcase"></i></div>
@@ -621,7 +610,7 @@ const renderTemplate2 = () => `
                         <div id="cv-exp-item-1" style="display:none;" class="relative">
                              <div class="absolute -left-[31px] top-1 w-3 h-3 bg-teal-500 rounded-full border-2 border-white"></div>
                             <h4 id="cv-exp-company-1" class="font-bold text-gray-800 text-base break-words"></h4>
-                            <p id="cv-exp-pos-1" class="text-sm text-teal-600 font-normal mb-1 italic break-words"></p> <!-- Normal & Italic -->
+                            <p id="cv-exp-pos-1" class="text-sm text-teal-600 font-normal mb-1 italic break-words"></p>
                              <span id="cv-exp-time-1" class="text-xs text-gray-500 italic block mb-2"></span>
                             <p id="cv-exp-desc-1" class="text-sm text-gray-600 leading-relaxed text-justify break-words"></p>
                         </div>
@@ -633,25 +622,25 @@ const renderTemplate2 = () => `
 
             <!-- Right Column (Sidebar Info) -->
             <div class="col-span-7 flex flex-col gap-8">
-                 <!-- Education -->
+                 <!-- Education (CENTERED HEADER) -->
                 <div id="container-education" style="display:none;">
                      <div class="flex items-center mb-3 justify-center w-full relative">
                          <div class="bg-teal-500 text-white p-2 rounded-full absolute right-0"><i class="fa-solid fa-graduation-cap"></i></div>
                          <h3 class="font-bold text-gray-700 uppercase text-lg bg-gray-200 py-1 px-4 rounded-l-full w-full flex justify-center items-center pr-10">HỌC VẤN</h3>
                     </div>
-                    <div id="cv-education" class="text-sm text-gray-600 leading-relaxed whitespace-pre-line text-right pr-2 break-words"></div>
+                    <div id="cv-education" class="text-base text-gray-600 leading-relaxed whitespace-pre-line text-right pr-2 break-words"></div>
                 </div>
 
-                 <!-- Skills -->
+                 <!-- Skills (CENTERED HEADER) -->
                 <div id="container-skills" style="display:none;">
                     <div class="flex items-center mb-3 justify-center w-full relative">
                          <div class="bg-teal-500 text-white p-2 rounded-full absolute right-0"><i class="fa-solid fa-tools"></i></div>
                          <h3 class="font-bold text-gray-700 uppercase text-lg bg-gray-200 py-1 px-4 rounded-l-full w-full flex justify-center items-center pr-10">KỸ NĂNG</h3>
                     </div>
-                    <div id="cv-skills" class="text-sm text-gray-600 leading-relaxed whitespace-pre-line text-right pr-2 break-words"></div>
+                    <div id="cv-skills" class="text-base text-gray-600 leading-relaxed whitespace-pre-line text-right pr-2 break-words"></div>
                 </div>
                 
-                 <!-- Soft Skills -->
+                 <!-- Soft Skills (CENTERED HEADER) -->
                 <div id="container-soft-skills" style="display:none;">
                     <div class="flex items-center mb-3 justify-center w-full relative">
                          <div class="bg-teal-500 text-white p-2 rounded-full absolute right-0"><i class="fa-solid fa-leaf"></i></div>
@@ -660,22 +649,22 @@ const renderTemplate2 = () => `
                     <div id="cv-soft-skills" class="space-y-3 pr-2 break-words"></div>
                 </div>
 
-                 <!-- Hobbies -->
+                 <!-- Hobbies (CENTERED HEADER) -->
                 <div id="container-hobbies" style="display:none;">
                     <div class="flex items-center mb-3 justify-center w-full relative">
                          <div class="bg-teal-500 text-white p-2 rounded-full absolute right-0"><i class="fa-solid fa-heart"></i></div>
                          <h3 class="font-bold text-gray-700 uppercase text-lg bg-gray-200 py-1 px-4 rounded-l-full w-full flex justify-center items-center pr-10">SỞ THÍCH</h3>
                     </div>
-                    <div id="cv-hobbies" class="text-sm text-gray-600 leading-relaxed whitespace-pre-line text-right pr-2 break-words"></div>
+                    <div id="cv-hobbies" class="text-base text-gray-600 leading-relaxed whitespace-pre-line text-right pr-2 break-words"></div>
                 </div>
 
-                 <!-- Activities -->
+                 <!-- Activities (CENTERED HEADER) -->
                 <div id="container-activities" style="display:none;">
                     <div class="flex items-center mb-3 justify-center w-full relative">
                          <div class="bg-teal-500 text-white p-2 rounded-full absolute right-0"><i class="fa-solid fa-users"></i></div>
                          <h3 class="font-bold text-gray-700 uppercase text-lg bg-gray-200 py-1 px-4 rounded-l-full w-full flex justify-center items-center pr-10">HOẠT ĐỘNG</h3>
                     </div>
-                    <div id="cv-activities" class="text-sm text-gray-600 leading-relaxed whitespace-pre-line text-right pr-2 break-words"></div>
+                    <div id="cv-activities" class="text-base text-gray-600 leading-relaxed whitespace-pre-line text-right pr-2 break-words"></div>
                 </div>
             </div>
         </div>
@@ -798,7 +787,7 @@ window.switchTemplate = (templateId) => {
     const wrapper = document.getElementById('cv-preview-wrapper');
     if(wrapper) {
          wrapper.innerHTML = window.currentTemplate === 1 ? renderTemplate1() : renderTemplate2();
-         // Re-populate data (Simplified for demo)
+         // Re-populate data
          const inputs = ['cv-name', 'cv-title', 'cv-email', 'cv-phone', 'cv-dob', 'cv-gender', 'cv-addr', 'cv-objective', 'cv-skills', 'cv-education', 'cv-activities', 'cv-hobbies'];
          inputs.forEach(id => {
              const inputEl = document.getElementById(id.replace('cv', 'input'));
@@ -872,7 +861,7 @@ window.addExperience = () => {
     const isTemplate2 = window.currentTemplate === 2;
     let previewHTML = '';
     if (isTemplate2) {
-         previewHTML = `<div id="cv-exp-item-${id}" style="display:none;" class="relative"><div class="absolute -left-[31px] top-1 w-3 h-3 bg-teal-500 rounded-full border-2 border-white"></div><h4 id="cv-exp-company-${id}" class="font-bold text-gray-800 text-base break-words"></h4><p id="cv-exp-pos-${id}" class="text-sm text-teal-600 font-semibold mb-1 break-words"></p><span id="cv-exp-time-${id}" class="text-xs text-gray-500 italic block mb-2"></span><p id="cv-exp-desc-${id}" class="text-sm text-gray-600 leading-relaxed text-justify break-words"></p></div>`;
+         previewHTML = `<div id="cv-exp-item-${id}" style="display:none;" class="relative"><div class="absolute -left-[31px] top-1 w-3 h-3 bg-teal-500 rounded-full border-2 border-white"></div><h4 id="cv-exp-company-${id}" class="font-bold text-gray-800 text-base break-words"></h4><p id="cv-exp-pos-${id}" class="text-sm text-teal-600 font-normal mb-1 italic break-words"></p><span id="cv-exp-time-${id}" class="text-xs text-gray-500 italic block mb-2"></span><p id="cv-exp-desc-${id}" class="text-sm text-gray-600 leading-relaxed text-justify break-words"></p></div>`;
     } else {
         previewHTML = `<div id="cv-exp-item-${id}" class="mb-8 pl-4 border-l-4 border-[#0ea5e9]/30" style="display:none;"><div class="flex justify-between items-baseline mb-2"><h4 id="cv-exp-company-${id}" class="font-bold text-slate-900 text-xl uppercase break-words"></h4><span id="cv-exp-time-${id}" class="text-sm text-slate-500 italic font-medium"></span></div><p id="cv-exp-pos-${id}" class="text-base text-slate-800 font-normal mb-3 italic text-[#0ea5e9] break-words"></p><p id="cv-exp-desc-${id}" class="text-base text-slate-700 leading-relaxed whitespace-pre-line text-justify break-words"></p></div>`;
     }
